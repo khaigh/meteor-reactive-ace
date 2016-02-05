@@ -22,7 +22,7 @@ class @ReactiveAce
   _parseBody: ->
     return unless @parseEnabled
     try
-      @_parsedBody = esprima.parse editor.value, @_parseOptions
+      @_parsedBody = esprima.parse @_editor?.getValue(), @_parseOptions
       @changed 'parsedBody'
       if @_parseError
         @_parseError = null

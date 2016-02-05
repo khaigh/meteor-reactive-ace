@@ -5,8 +5,6 @@ Package.describe({
   "git": 'https://github.com/dcsan/meteor-reactive-ace.git'
 });
 
-console.log(Package)
-
 var bundlerApi = null
 var path = Npm.require("path");
 var fs = Npm.require("fs");
@@ -17,7 +15,6 @@ if (process.env.PACKAGE_DIRS) {
   // packagesDevDir = "/" 
   // var packagePath = path.join(path.resolve("."), packagesDevDir );
   var packageRoot=process.env.PACKAGE_DIRS
-  console.log("DEVMODE packageRoot:" + packageRoot);
 } else {
   // find packages in appDir
   var packageRoot = path.join(path.resolve("."), "packages");
@@ -25,9 +22,6 @@ if (process.env.PACKAGE_DIRS) {
 
 packagePath = path.join(packageRoot, "reactive-ace");
 
-console.log("cwd:", path.resolve(".") );
-console.log("packageRoot:", packageRoot);
-console.log("packagePath:", packagePath);
 
 
 Package.on_use(function (api, where) {
@@ -42,7 +36,6 @@ Package.on_use(function (api, where) {
   //changed to use pre-included ace version
   // var srcPath = path.join(packagePath, "ace-builds", "src")
   var srcPath = path.join(packagePath, "vendor", "ace", "src")
-  console.log('srcPath', srcPath)
   var files = fs.readdirSync(srcPath);
 
   files.forEach(function(file){
@@ -66,7 +59,6 @@ Package.on_use(function (api, where) {
     "lib/esprima.js", 
     "editor.coffee", 
     "editorSetup.coffee", 
-    "hack.hack", 
     "templates.html"
   ], "client");
 
